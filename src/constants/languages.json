@@ -1,0 +1,103 @@
+{
+    "languages": [{
+            "id": 1,
+            "language": "English",
+            "code": "en"
+        },
+        {
+            "id": 2,
+            "language": "Spanish",
+            "code": "es"
+        },
+        {
+            "id": 3,
+            "language": "Chinese",
+            "code": "zh"
+        },
+        {
+            "id": 5,
+            "language": "Turkish",
+            "code": "tr"
+        },
+        {
+            "id": 4,
+            "language": "Polish",
+            "code": "pl"
+        },
+        {
+            "id": 7,
+            "language": "Japanese",
+            "code": "ja"
+        },
+        {
+            "id": 6,
+            "language": "Korean",
+            "code": "ko"
+        },
+        {
+            "id": 8,
+            "language": "Thai",
+            "code": "th"
+        },
+        {
+            "id": 9,
+            "language": "French",
+            "code": "fr"
+        },
+        {
+            "id": 10,
+            "language": "German",
+            "code": "de"
+        },
+        {
+            "id": 19,
+            "language": "Greek",
+            "code": "el"
+        },
+        {
+            "id": 11,
+            "language": "Indonesian",
+            "code": "id"
+        },
+        {
+            "id": 12,
+            "language": "Georgian",
+            "code": "ka"
+        },
+        {
+            "id": 13,
+            "language": "Dutch",
+            "code": "nl"
+        },
+        {
+            "id": 14,
+            "language": "Russian",
+            "code": "ru"
+        },
+        {
+            "id": 15,
+            "language": "Czech",
+            "code": "cs"
+        },
+        {
+            "id": 16,
+            "language": "Portuguese",
+            "code": "pt"
+        },
+        {
+            "id": 17,
+            "language": "Hungarian",
+            "code": "hu"
+        },
+        {
+            "id": 18,
+            "language": "Italian",
+            "code": "it"
+        },
+        {
+            "id": 20,
+            "language": "Portuguese",
+            "code": "pt"
+        }
+    ]
+}

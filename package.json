@@ -1,0 +1,40 @@
+{
+  "name": "dlivetv-unofficial-api",
+  "version": "2.1.19",
+  "homepage": "https://github.com/timedotcc/dlivetv-unofficial-api#readme",
+  "description": "Unofficial dlive.tv api",
+  "main": "./src/index.js",
+  "types": "./types/index.d.ts",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "websocket": "^1.0.28"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0"
+  },
+  "scripts": {
+    "test": "yarn test:raw",
+    "lint": "eslint src",
+    "test:raw": "mocha"
+  },
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "Time",
+      "url": "https://github.com/timedotcc"
+    },
+    {
+      "name": "Captien",
+      "url": "https://github.com/Carbowix"
+    }
+  ],
+  "contributors": [
+    "Ikd70"
+  ]
+}

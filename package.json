@@ -1,10 +1,13 @@
 {
   "name": "dlivetv-unofficial-api",
   "version": "2.1.19",
-  "homepage": "https://github.com/timedotcc/dlivetv-unofficial-api#readme",
+  "homepage": "https://github.com/dlive-apis/dlivetv-api-js#readme",
   "description": "Unofficial dlive.tv api",
   "main": "./src/index.js",
-  "types": "./types/main.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dlive-apis/dlivetv-api-js.git"
+  },
   "dependencies": {
     "chai": "^4.2.0",
     "mocha": "^6.1.4",

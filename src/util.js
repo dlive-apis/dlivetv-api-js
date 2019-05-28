@@ -96,6 +96,20 @@ const getChannelFollowers = (authKey, channel, amountToShow) => {
     });
 };
 
+const getChannelGiveawayWinners = (authKey, channel) => {
+    const postData = generatePostData("LivestreamTreasureChestWinners", {
+        displayname: channel,
+        isLoggedIn: true
+    });
+    return new Promise((resolve, reject) => {
+        webRequest(authKey, postData).then((result) => {
+            result.errors !== undefined ?
+                reject(new Error(result.errors["0"].message)) :
+                resolve(result.data.userByDisplayName.treasureChest);
+        }).catch(reject);
+    });
+}
+
 const getChannelReplays = (authKey, channel, amountToShow) => {
     const postData = generatePostData("LivestreamProfileReplay", {
         displayname: channel,
@@ -190,6 +204,7 @@ module.exports = {
     getChannelReplays,
     getChannelVideos,
     getChannelWallet,
+    getChannelGiveawayWinners,
     getTopContributors,
     sendChatMessage
 };

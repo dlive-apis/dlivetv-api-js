@@ -214,6 +214,17 @@ class Dliver extends dlive {
         });
     }
 
+    getChannelGiveawayWinners (displayName = this.getChannel) {
+        return new Promise((resolve, reject) => {
+            if (!displayName && !this.getChannel) {
+                reject(new TypeError("You need to initalize or specify a channel"));
+            }
+            util.getChannelGiveawayWinners(this.getAuthkey, displayName).then((result) => {
+                resolve(result);
+            }).catch(reject);
+        });
+    }
+
     getChannelWallet(displayName = this.getChannel, amountToShow = 5) {
         return new Promise((resolve, reject) => {
             if (!displayName && !this.getChannel) {

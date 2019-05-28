@@ -1,21 +1,29 @@
 "use strict";
 /// <reference types="dlive-tv" />
 const util = require("./util");
-const { dlive } = require("./dlive");
-const { dliveUtil } = require("./dliveUtil");
-const { dliveMod } = require("./dliveModeration");
-const { dliveUser } = require('./dliveUser')
+const {
+    dlive
+} = require("./dlive");
+const {
+    dliveUtil
+} = require("./dliveUtil");
+const {
+    dliveMod
+} = require("./dliveModeration");
+const {
+    dliveUser
+} = require('./dliveUser')
 const STREAM_RULES = ["THIS_MONTH", "ALL_TIME"];
 
 class Dliver extends dlive {
-    constructor (channel, authKey) {
+    constructor(channel, authKey) {
         super();
         this.init(channel, authKey);
         this.util = new dliveUtil(authKey);
         this.user = new dliveUser(authKey);
     }
 
-    async init (channel, authKey) {
+    async init(channel, authKey) {
         const _this = this;
         _this.setAuthkey = authKey;
         const blockchain = await util.channelToBlockchain(authKey, channel);
@@ -27,12 +35,12 @@ class Dliver extends dlive {
             this.moderation = new dliveMod(this.getAuthkey, this.getChannel, this.getBlockChainUsername);
         }
         _this.client.on("connectFailed",
-            function(error) {
+            function (error) {
                 return new Error(`Connect error: ${error.toString()}`);
             });
 
         _this.client.on("connect",
-            async function(connection) {
+            async function (connection) {
                 console.log(`Joined ${_this.getChannel}`);
                 connection.sendUTF(
                     JSON.stringify({
@@ -48,24 +56,22 @@ class Dliver extends dlive {
                             variables: {
                                 streamer: _this.blockChainUsername
                             },
-                            extensions: {},
                             operationName: "StreamMessageSubscription",
-                            query:
-                                "subscription StreamMessageSubscription($streamer: String!) {\n  streamMessageReceived(streamer: $streamer) {\n    type\n    ... on ChatGift {\n      id\n      gift\n      amount\n      recentCount\n      expireDuration\n      ...VStreamChatSenderInfoFrag\n    }\n    ... on ChatHost {\n      id\n      viewer\n      ...VStreamChatSenderInfoFrag\n    }\n    ... on ChatSubscription {\n      id\n      month\n      ...VStreamChatSenderInfoFrag\n    }\n    ... on ChatChangeMode {\n      mode\n    }\n    ... on ChatText {\n      id\n      content\n      ...VStreamChatSenderInfoFrag\n    }\n    ... on ChatFollow {\n      id\n      ...VStreamChatSenderInfoFrag\n    }\n    ... on ChatDelete {\n      ids\n    }\n    ... on ChatBan {\n      id\n      ...VStreamChatSenderInfoFrag\n    }\n    ... on ChatModerator {\n      id\n      ...VStreamChatSenderInfoFrag\n      add\n    }\n    ... on ChatEmoteAdd {\n      id\n      ...VStreamChatSenderInfoFrag\n      emote\n    }\n  }\n}\n\nfragment VStreamChatSenderInfoFrag on SenderInfo {\n  subscribing\n  role\n  roomRole\n  sender {\n    id\n    username\n    displayname\n    avatar\n    partnerStatus\n  }\n}\n"
+                            query: "subscription StreamMessageSubscription($streamer: String!) {\n  streamMessageReceived(streamer: $streamer) {\n    type\n    ... on ChatGift {\n      id\n      gift\n      amount\n      recentCount\n      expireDuration\n      ...VStreamChatSenderInfoFrag\n    }\n    ... on ChatHost {\n      id\n      viewer\n      ...VStreamChatSenderInfoFrag\n    }\n    ... on ChatSubscription {\n      id\n      month\n      ...VStreamChatSenderInfoFrag\n    }\n    ... on ChatChangeMode {\n      mode\n    }\n    ... on ChatText {\n      id\n      content\n      ...VStreamChatSenderInfoFrag\n    }\n    ... on ChatFollow {\n      id\n      ...VStreamChatSenderInfoFrag\n    }\n    ... on ChatDelete {\n      ids\n    }\n    ... on ChatBan {\n      id\n      ...VStreamChatSenderInfoFrag\n    }\n    ... on ChatModerator {\n      id\n      ...VStreamChatSenderInfoFrag\n      add\n    }\n    ... on ChatEmoteAdd {\n      id\n      ...VStreamChatSenderInfoFrag\n      emote\n    }\n  }\n}\n\nfragment VStreamChatSenderInfoFrag on SenderInfo {\n  subscribing\n  role\n  roomRole\n  sender {\n    id\n    username\n    displayname\n    avatar\n    partnerStatus\n  }\n}\n"
                         }
                     })
                 );
 
                 connection.on("error",
-                    function(error) {
+                    function (error) {
                         return new Error(`Connection error: ${error.toString()}`);
                     });
                 connection.on("close",
-                    function() {
+                    function () {
                         return new Error("Connection closed");
                     });
                 connection.on("message",
-                    function(message) {
+                    function (message) {
                         if (message && message.type === "utf8") {
                             message = JSON.parse(message.utf8Data);
                             if (message.payload !== undefined) {
@@ -78,7 +84,7 @@ class Dliver extends dlive {
         _this.client.connect("wss://graphigostream.prd.dlive.tv", "graphql-ws");
     }
 
-    followUserChannel (channel = this.getBlockChainUsername) {
+    followUserChannel(channel = this.getBlockChainUsername) {
         return new Promise(async (resolve, reject) => {
             if (!channel && !this.getBlockChainUsername) {
                 reject(new TypeError("You need to initalize or specify a channel"));
@@ -94,7 +100,7 @@ class Dliver extends dlive {
         });
     }
 
-    unfollowUserChannel (channel = this.getBlockChainUsername) {
+    unfollowUserChannel(channel = this.getBlockChainUsername) {
         return new Promise(async (resolve, reject) => {
             if (!channel && !this.getBlockChainUsername) {
                 reject(new TypeError("You need to initalize or specify a channel"));
@@ -110,7 +116,7 @@ class Dliver extends dlive {
         });
     }
 
-    sendMessage (msg) {
+    sendMessage(msg) {
         return new Promise((resolve, reject) => {
             if (!this.getBlockChainUsername) {
                 reject(new TypeError("You need to initalize a channel"));
@@ -121,7 +127,7 @@ class Dliver extends dlive {
         });
     }
 
-    sendMessageToChannel (msg, channel = this.getBlockChainUsername) {
+    sendMessageToChannel(msg, channel = this.getBlockChainUsername) {
         return new Promise(async (resolve, reject) => {
             if (!channel && !this.getBlockChainUsername) {
                 reject(new TypeError("You need to initalize or specify a channel"));
@@ -138,7 +144,7 @@ class Dliver extends dlive {
         });
     }
 
-    getChannelInformation (displayName = this.getChannel) {
+    getChannelInformation(displayName = this.getChannel) {
         return new Promise((resolve, reject) => {
             if (!displayName && !this.getChannel) {
                 reject(new TypeError("You need to initalize or specify a channel"));
@@ -149,7 +155,7 @@ class Dliver extends dlive {
         });
     }
 
-    getChannelTopContributors (displayName = this.getChannel, amountToShow = 5, rule = "ALL_TIME") {
+    getChannelTopContributors(displayName = this.getChannel, amountToShow = 5, rule = "ALL_TIME") {
         return new Promise((resolve, reject) => {
             if (!displayName && !this.getChannel) {
                 reject(new TypeError("You need to initalize or specify a channel"));
@@ -164,7 +170,7 @@ class Dliver extends dlive {
         });
     }
 
-    getChannelViewers (displayName = this.getChannel) {
+    getChannelViewers(displayName = this.getChannel) {
         return new Promise((resolve, reject) => {
             if (!displayName && !this.getChannel) {
                 reject(new TypeError("You need to initalize or specify a channel"));
@@ -175,7 +181,7 @@ class Dliver extends dlive {
         });
     }
 
-    getChannelFollowers (displayName = this.getChannel, amountToShow = 20) {
+    getChannelFollowers(displayName = this.getChannel, amountToShow = 20) {
         return new Promise((resolve, reject) => {
             if (!displayName && !this.getChannel) {
                 reject(new TypeError("You need to initalize or specify a channel"));
@@ -186,7 +192,7 @@ class Dliver extends dlive {
         });
     }
 
-    getChannelReplays (displayName = this.getChannel, amountToShow = 5) {
+    getChannelReplays(displayName = this.getChannel, amountToShow = 5) {
         return new Promise((resolve, reject) => {
             if (!displayName && !this.getChannel) {
                 reject(new TypeError("You need to initalize or specify a channel"));
@@ -197,7 +203,7 @@ class Dliver extends dlive {
         });
     }
 
-    getChannelVideos (displayName = this.getChannel, amountToShow = 5) {
+    getChannelVideos(displayName = this.getChannel, amountToShow = 5) {
         return new Promise((resolve, reject) => {
             if (!displayName && !this.getChannel) {
                 reject(new TypeError("You need to initalize or specify a channel"));
@@ -208,7 +214,7 @@ class Dliver extends dlive {
         });
     }
 
-    getChannelWallet (displayName = this.getChannel, amountToShow = 5) {
+    getChannelWallet(displayName = this.getChannel, amountToShow = 5) {
         return new Promise((resolve, reject) => {
             if (!displayName && !this.getChannel) {
                 reject(new TypeError("You need to initalize or specify a channel"));

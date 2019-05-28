@@ -4,7 +4,7 @@
   "homepage": "https://github.com/timedotcc/dlivetv-unofficial-api#readme",
   "description": "Unofficial dlive.tv api",
   "main": "./src/index.js",
-  "types": "./types/index.d.ts",
+  "types": "./types/main.d.ts",
   "dependencies": {
     "chai": "^4.2.0",
     "mocha": "^6.1.4",

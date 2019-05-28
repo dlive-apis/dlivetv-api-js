@@ -1,8 +1,9 @@
 'use strict'
 const { expect } = require('chai')
+const { Dlive } = require('../src/index');
 const channelName = 'abc'
 const authKey = 'accessToken'
-
+let channel = new Dlive('test', 'abc');
 const main = async () => {
   describe('Validating values', function () {
     it('Should be equal values', function () {

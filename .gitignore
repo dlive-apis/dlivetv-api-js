@@ -74,3 +74,5 @@ src/.vs/dlivetv-unofficial-api-js/v16/.suo
 src/dlivetv-unofficial-api-js.njsproj
 src/dlivetv-unofficial-api-js.njsproj.user
 src/dlivetv-unofficial-api-js.sln
+
+types/

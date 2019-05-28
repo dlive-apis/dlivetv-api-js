@@ -3,7 +3,7 @@
     <a href="#"><img src="https://i.imgur.com/HZ0PD0v.jpg" /></a>
     <br />
     <br />
-    <a href="https://spectrum.chat/dlive-api"><img alt="Spectrum" src="https://img.shields.io/badge/Spectrum-Chat-blue.svg?&style=for-the-badge"></a>
+    <a href="https://discord.gg/xMnkxFZ"><img alt="Discord" src="https://img.shields.io/discord/581547415316987935.svg?label=Discord&logo=Discord&style=for-the-badge"></a>
     <a href="https://github.com/timedotcc/dlivetv-unofficial-api/blob/master/LICENSE"><img alt="GitHub" src="https://img.shields.io/badge/License-Modified%20MIT-green.svg?style=for-the-badge"></a>
     <a href="https://nodei.co/npm/dlivetv-unofficial-api/"><img alt="npm" src="https://img.shields.io/npm/v/dlivetv-unofficial-api.svg?style=for-the-badge"></a>
     <a href="https://www.npmjs.com/package/dlivetv-unofficial-api"><img alt="npm" src="https://img.shields.io/npm/dm/dlivetv-unofficial-api.svg?style=for-the-badge"></a>
@@ -16,7 +16,7 @@
 > dlivetv-unofficial-api is a wrapping API for the graphql hidden api provided from dlive.tv with a focus on ease of use and on performance. 
 
 ## Prerequisites
-- Access token is required to use this module. Create an account on [dlive.tv](https://dlive.tv/) then follow our [wiki](https://github.com/dlive-apis/dlivetv-unofficial-api-js/wiki/Get-my-access-key) tutorial to get your token
+- Access token is required to use this module. Create an account on [dlive.tv](https://dlive.tv/) then follow our [wiki](https://dlive.timedot.cc/tutorials#get-my-access-token) tutorial to get your token
 
 ## Installation
 dlivetv-unofficial-api is free and easy to install
@@ -33,7 +33,7 @@ yarn add dlivetv-unofficial-api
 const  { Dlive } = require('dlivetv-unofficial-api')
 
 const displayName = 'displayName' // Our streamer displayname (https://dlive.tv/displayName)
-const accessKey = 'YOUR KEY' // Our access key (https://github.com/dlive-apis/dlivetv-unofficial-api-js/wiki/Get-my-access-key)
+const accessKey = 'YOUR KEY' // Our access key (https://dlive.timedot.cc/tutorials#get-my-access-token)
 
 // Chat cooldown
 const coolDown = 3000 // 3 seconds
